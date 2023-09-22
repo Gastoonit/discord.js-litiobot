@@ -13,10 +13,7 @@ module.exports = {
 
 			const guildConfiguration = await GuildConfiguration.findOne({ guildId: message.guild.id });
 
-			// Mostrar esto si el usuario sugiere en el canal equivocado 
 			if (!guildConfiguration?.suggestionsChannelId.includes(message.channel.id)) return;
-
-			// if (!guildConfiguration || !guildConfiguration?.suggestionsChannelId || !message.guild.channels.cache.get(guildConfiguration?.suggestionsChannelId) || message.channel.id !== guildConfiguration?.suggestionsChannelId) return;
 
 			message.delete().catch(() => { });
 
@@ -62,7 +59,7 @@ module.exports = {
 				])
 				.setColor('Yellow');
 
-			// Buttons
+			// Botones
 			const upvoteButton = new ButtonBuilder()
 				.setLabel('De acuerdo')
 				.setEmoji('<:litio_1:1148422028634902568>')
@@ -75,18 +72,6 @@ module.exports = {
 				.setStyle(ButtonStyle.Danger) // Red
 				.setCustomId(`suggestion.${newSuggestion.suggestionId}.downvote`);
 
-			/*const approveButton = new ButtonBuilder()
-				.setEmoji('✅')
-				.setLabel('Aprobar')
-				.setStyle(ButtonStyle.Success) // Green
-				.setCustomId(`suggestion.${newSuggestion.suggestionId}.approve`);
-*/
-			/*const rejectButton = new ButtonBuilder()
-				.setEmoji('🚫')
-				.setLabel('Denegar')
-				.setStyle(ButtonStyle.Danger) // Red
-				.setCustomId(`suggestion.${newSuggestion.suggestionId}.reject`);
-*/
 			const secondRow = new ActionRowBuilder().addComponents([
 				new StringSelectMenuBuilder()
 					.setPlaceholder('Panel de acciones')
@@ -120,8 +105,8 @@ module.exports = {
 				components: [firstRow, secondRow],
 			});
 
-		} catch (error) {
-			console.log(`Error in /suggest: ${error}`);
+		} catch (err) {
+			console.log(`Error in /suggest: ${err}`);
 		}
 	},
 };
