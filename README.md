@@ -14,8 +14,8 @@
 ```
 - Clonar
 ```git
-git clone https://github.com/Gastoonit/discordjs-litiobot.git
-mv discordjs-litiobot/* .
+git clone https://github.com/Gastoonit/discord.js-litiobot.git
+mv discord.js-litiobot/* .
 ```
 ## [/] Características de `Litio`
 `Litio`, Es un bot de Discord interactivo con sistema avanzado de tickets y sugerencias para tu servidor. Simplifica la comunicación, solución de problemas y fomenta la participación activa de los miembros en tu servidor!
