@@ -35,7 +35,7 @@ mv discord.js-litiobot/* .
 - Flood
 - Piedra Papel O Tijeras
 ## 🤖 | Agrega a `Litio` a tu sevidor
-* Agrega a [Litio](https://discord.com/api/oauth2/authorize?client_id=1146522183439487096&permissions=8&scope=bot%20applications.commands)
-* Errores/dudas en el [Server de ayuda](https://discord.gg/nVhAyrxy78)
+* ¡Agrega a [Litio](https://discord.com/api/oauth2/authorize?client_id=1146522183439487096&permissions=8&scope=bot%20applications.commands) a tu servidor de preferencia!
+* Errores/dudas en el [Servidor de ayuda](https://discord.gg/nVhAyrxy78).
 
 ### Compartido de ♥️ por Gastoonit! :)
