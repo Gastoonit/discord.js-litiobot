@@ -22,58 +22,6 @@ module.exports = {
 				const targetMessage = await interaction.channel.messages.fetch(targetSuggestion.messageId);
 				const targetMessageEmbed = targetMessage.embeds[0];
 
-				/*if (action === 'approve') {
-					if (!interaction.member.permissions.has('Administrator')) {
-						await interaction.editReply({
-							content: ':bangbang: | ¡No tienes permiso para usar este apartado!',
-							epehmeral: true
-						});
-						return;
-					}
-		    
-					targetSuggestion.status = 'approved';
-		    
-					targetMessageEmbed.data.color = 0x84e660; // Green Hex code
-					targetMessageEmbed.fields[0].value = `✅) Aprobada`;
-		    
-					await targetSuggestion.save();
-		    
-					interaction.editReply('✅️ | ¡Sugerencia aprobada con éxito!');
-		    
-					targetMessage.edit({
-						embeds: [targetMessageEmbed],
-						components: [targetMessage.components[0]],
-					});
-		    
-					return;
-				}*/
-
-				/*if (action === 'reject') {
-					if (!interaction.member.permissions.has('Administrator')) {
-						await interaction.editReply({
-							content: ':bangbang: | ¡No tienes permiso para usar este apartado!',
-							epehmeral: true
-						});
-						return;
-					}
-				    
-					targetSuggestion.status = 'rejected';
-		    
-					targetMessageEmbed.data.color = 0xff6161; // Red Hex code
-					targetMessageEmbed.fields[0].value = `❌) Denegada`;
-		    
-					await targetSuggestion.save();
-		    
-					interaction.editReply('🚫 | ¡Sugerencia denegada con éxito!');
-		    
-					targetMessage.edit({
-						embeds: [targetMessageEmbed],
-						components: [targetMessage.components[0]],
-					});
-		    
-					return;
-				}*/
-
 				if (action === 'upvote') {
 
 					const hasVoted = targetSuggestion.upvotes.includes(interaction.user.id) || targetSuggestion.downvotes.includes(interaction.user.id);
