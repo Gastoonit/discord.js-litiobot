@@ -1,0 +1,5 @@
+{
+    "BOT_ID": "DATA_BOT_ID",
+    "BOT_TOKEN": "DATA_BOT_TOKEN",
+	"MONGO_URL": "MONGO_URL"
+}
