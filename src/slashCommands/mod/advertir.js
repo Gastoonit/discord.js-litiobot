@@ -48,7 +48,7 @@ module.exports = {
 
 			if (interaction.options.getSubcommand() === 'otorgar') {
 
-				if (!interaction.guild.members.me.permissions.has('Administrator')) return await interaction.reply({
+				if (!interaction.member.permissions.has('Administrator')) return await interaction.reply({
 					content: ':bangbang: | ¡No tienes permiso para usar este apartado! (Administrador)',
 					ephemeral: true
 				});
