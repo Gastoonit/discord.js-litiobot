@@ -20,7 +20,7 @@ module.exports = {
 		try {
 			const { options, member } = interaction;
 
-			if (!interaction.member.permissions.has('ManageMessages') && !interaction.members.permissions.has('Administrator')) return interaction.reply({ content: ':bangbang: | ¡No tienes permiso para usar este apartado!', epehmeral: true });
+			if (!interaction.member.permissions.has('ManageMessages') && !interaction.member.permissions.has('Administrator')) return interaction.reply({ content: ':bangbang: | ¡No tienes permiso para usar este apartado!', epehmeral: true });
 
 			const numberDeleted = options.getNumber("cantidad");
 			const user = options.getUser('miembro');
