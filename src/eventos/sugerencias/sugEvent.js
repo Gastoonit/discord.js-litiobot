@@ -13,7 +13,7 @@ module.exports = {
 
 				const [type, suggestionId, action] = interaction.customId.split('.');
 
-				if (!type || !suggestionId || !action) return;
+				if (!type || !suggestionId || !messageId || !action) return;
 				if (type !== 'suggestion') return;
 
 				await interaction.deferReply({ ephemeral: true });
