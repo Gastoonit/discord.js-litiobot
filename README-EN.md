@@ -36,4 +36,4 @@ mv discord.js-lithiobot/* .
 ## 🤖 | Add `Lithium` to your server
 * Add [Lithium](https://discord.com/api/oauth2/authorize?client_id=1146522183439487096&permissions=8&scope=bot%20applications.commands) to your preferred server!
 * Bugs/questions on the [Help Server](https://discord.gg/nVhAyrxy78). 
-### Shared from ♥️ by Gastoonit! :)
+### Shared and collected from ♥️ by Gastoonit! :)
