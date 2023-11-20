@@ -95,7 +95,7 @@ module.exports = {
               "- Variable %usuario menciona al usuario, %tiempo 5 minutos"
             )
             .setRequired(false)
-			.setMaxLength(512)
+	    .setMaxLength(512)
         )
     )
     .addSubcommand((command) =>
@@ -128,6 +128,7 @@ module.exports = {
               "- Variable %usuario menciona al usuario, %tiempo 5 minutos"
             )
             .setRequired(false)
+	    .setMaxLength(512)
         )
     ),
   run: async (client, interaction) => {
