@@ -43,13 +43,13 @@ module.exports = {
         .setEmoji("🔻")
         .setStyle(ButtonStyle.Link)
     );
-
+    try {
     if (interaction.options.getSubcommand() === "help") {
       const interactionName = interaction.options.getString("comando");
       const embed = new EmbedBuilder();
 
       if (interactionName) {
-        const cmd = interaction.client.slashCommands.find(
+        const cmd = client.slashCommands.find(
           (command) => command.data.name === interactionName
         );
 
@@ -122,7 +122,7 @@ module.exports = {
           )
           .setTimestamp();
 
-        let select = new StringSelectMenuBuilder()
+        const select = new StringSelectMenuBuilder()
           .setCustomId(`ok`)
           .setPlaceholder(`Menú de selección`)
           .addOptions([
@@ -157,7 +157,7 @@ module.exports = {
               value: `ok6`,
             },
           ]);
-        let ro2 = new ActionRowBuilder().addComponents(select);
+        const ro2 = new ActionRowBuilder().addComponents(select);
 
         let em1 = new EmbedBuilder()
           .setColor("White")
@@ -177,7 +177,7 @@ module.exports = {
           })
           .addFields({
             name: `Establecer canales`,
-            value: "`establecer sugerencias`, `establecer tickets`",
+            value: "`establecer sugerencias`, `establecer tickets`, `establecer antilink`, `establecer antilink_editar`",
           });
 
         let em2 = new EmbedBuilder()
@@ -219,7 +219,7 @@ module.exports = {
           })
           .addFields({
             name: `Entretenimiento`,
-            value: "`juego conectar4`, `juego rps`, `juego calculadora`, `juego lucha`, `juego flood`, `juego tictactoe`, `imagen`, `reaccionar`",
+            value: "`juego conectar4`, `juego rps`, `juego flood`, `juego tictactoe`, `/juego busca_minas`, ,`/juego hangman`",
           });
 
         let em4 = new EmbedBuilder()
@@ -253,7 +253,7 @@ module.exports = {
               .join("\n- ")}`
           )
           .setThumbnail(
-            interaction.user.displayAvatarURL({
+            interaction.guild.iconURL({
               dynamic: true,
               extension: "png",
             })
@@ -266,12 +266,11 @@ module.exports = {
             }),
           });
 
-        let msg = await interaction.reply({
+        const msg = await interaction.reply({
           embeds: [em],
           components: [ro2],
-        }); // Botones eliminados la línea antigua es: let msg = await interaction.channel.send({ embeds: [em], components: [ro, ro2] });
-
-        let call = await msg.createMessageComponentCollector({
+        });
+        const call = await msg.createMessageComponentCollector({
           filter: (o) => {
             if (o.user.id === interaction.user.id) return true;
             else {
@@ -287,32 +286,32 @@ module.exports = {
           if (int.isStringSelectMenu()) {
             for (const value of int.values) {
               if (value === `ok1`) {
-                return int.update({
+                int.update({
                   embeds: [em],
                 });
               }
               if (value === `ok2`) {
-                return int.update({
+                int.update({
                   embeds: [em1],
                 });
               }
               if (value === `ok3`) {
-                return int.update({
+               int.update({
                   embeds: [em2],
                 });
               }
               if (value === `ok4`) {
-                return int.update({
+                int.update({
                   embeds: [em3],
                 });
               }
               if (value === `ok5`) {
-                return int.update({
+                int.update({
                   embeds: [em4],
                 });
               }
               if (value === `ok6`) {
-                return int.update({
+                int.update({
                   embeds: [em5],
                 });
               }
@@ -322,12 +321,10 @@ module.exports = {
 
         call.on("end", async () => {
           if (!msg) return;
-          ro2.components[0].setDisabled(true);
-          msg.edit({
-            embeds: [em],
+          ro2.components[0].setPlaceholder("¡Deshabilitado!").setDisabled(true);
+          await msg.edit({
 			components: [ro2],
-            content: null
-          });
+          }).catch((err) => { return; });
         });
       }
     }
@@ -353,5 +350,6 @@ module.exports = {
 
       await interaction.reply({ embeds: [EmbedBot], components: [row] });
     }
+   } catch(err) { return; }
   },
 };
