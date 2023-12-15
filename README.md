@@ -25,7 +25,7 @@ mv discord.js-litiobot/* .
 * Juegos
 * Un poco de moderación
 
-## [Nuevo] ## 🚦 | Sistema anti-links customizable
+## [Nuevo] 🚦 | Sistema anti-links customizable
 ## 🎫 | Tickets
 ![tik_01](https://media.discordapp.net/attachments/1037465884769386538/1153844499383058522/SmartSelect_20230919_203727_Video_Player.gif)
 ![tik_02](https://media.discordapp.net/attachments/1037465884769386538/1153844498468720640/SmartSelect_20230919_203608_Video_Player.gif)
