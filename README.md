@@ -25,15 +25,16 @@ mv discord.js-litiobot/* .
 * Juegos
 * Un poco de moderación
 
+## [Nuevo] ## 🚦 | Sistema anti-links customizable
 ## 🎫 | Tickets
 ![tik_01](https://media.discordapp.net/attachments/1037465884769386538/1153844499383058522/SmartSelect_20230919_203727_Video_Player.gif)
 ![tik_02](https://media.discordapp.net/attachments/1037465884769386538/1153844498468720640/SmartSelect_20230919_203608_Video_Player.gif)
-## 💡 | Sugerencias / suggestions
 ## 🎮 | Comandos de Juegos
 - Conectar 4
 - Tictactoe
 - Flood
 - Piedra Papel O Tijeras
+- Hangman
 ## 🤖 | Agrega a `Litio` a tu sevidor
 * ¡Agrega a [Litio](https://discord.com/api/oauth2/authorize?client_id=1146522183439487096&permissions=8&scope=bot%20applications.commands) a tu servidor de preferencia!
 * Errores/dudas en el [Servidor de ayuda/Support server](https://discord.gg/nVhAyrxy78).
