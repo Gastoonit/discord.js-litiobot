@@ -29,7 +29,7 @@ module.exports = {
 			)
 			.addNumberOption((option) => option.setName('advertencia_id').setDescription('- ID de la advertencia')
 				.setRequired(true))
-		)
+			)
 		.addSubcommand((command) => command
 			.setName("quitar_todas")
 			.setDescription(
@@ -37,7 +37,7 @@ module.exports = {
 			)
 			.addUserOption((option) => option.setName('miembro').setDescription('- Miembro')
 				.setRequired(true))
-		)
+			)
 		.setDMPermission(false),
 	run: async (client, interaction) => {
 		try {
@@ -45,6 +45,7 @@ module.exports = {
 			function getRndInteger(min, max) {
 				return Math.floor(Math.random() * (max - min + 1)) + min;
 			}
+			// await interaction.deferReply({ ephemeral: false })
 
 			if (interaction.options.getSubcommand() === 'otorgar') {
 
@@ -54,11 +55,6 @@ module.exports = {
 				});
 
 				const member = interaction.options.getUser('miembro');
-
-				if (client.cooldowns.has(interaction.user.id)) {
-
-					return await interaction.followUp({ content: ':no_entry_sign: | ¡Espera, no vallas tan rápido!', ephemeral: true });
-				} else {
 
 					const modal = new ModalBuilder()
 						.setCustomId('radv-modal')
@@ -77,18 +73,15 @@ module.exports = {
 					modal.addComponents(firstRow)
 					await interaction.showModal(modal);
 
-					/// interaction.deferReply()
-
 					client.on(Events.InteractionCreate, async (interaction) => {
 						if (!interaction.isModalSubmit()) return;
 
 						if (interaction.customId === 'radv-modal') {
-							// await interaction.deferReply({ ephemeral: false })
 
 							const reason = interaction.fields.getTextInputValue('reason');
 
 							const dataSaved = new Schema({
-								_id: "24" + getRndInteger(20, 99) + getRndInteger(1, 9) + getRndInteger(1, 9),
+								_id: getRndInteger(2000, 9999),
 								guildId: interaction.guild.id,
 								memberId: member.id,
 								modId: interaction.user.id,
@@ -97,30 +90,24 @@ module.exports = {
 							})
 							await dataSaved.save()
 
-							await interaction.reply({
+							return interaction.reply({
 								content: `🧾 | ${member} (ID: ${member.id}) ha sido advertido, usa */advertir ver [miembro]*.`
 							})
 
 						}
 					});
-					client.cooldowns.set(interaction.user.id, true);
-
-					setTimeout(() => {
-						client.cooldowns.delete(interaction.user.id);
-					}, 10000);
-				}
+					
 			}
 
 			if (interaction.options.getSubcommand() === 'visualizar') {
 
 				const member = interaction.options.getUser('miembro');
-				await interaction.deferReply()
 
 				const memberAdv = await Schema.find({
 					memberId: member.id,
 					guildId: interaction.guild.id,
 				});
-				if (!memberAdv?.length) return await interaction.followUp({
+				if (!memberAdv?.length) return await interaction.reply({
 					content: `🧾 | **Advertencias de: ${member.tag || member.user.tag} (ID: ${member.id})**\n🦺 | El miembro no tiene ninguna advertencia actualmente.`,
 					ephemeral: false
 				})
@@ -138,12 +125,12 @@ module.exports = {
 				const buff = Buffer.from(contentAdvs)
 				const fil = new AttachmentBuilder(buff, { name: "advs.txt" })
 
-				if (contentAdvs.length > 1997) return await interaction.followUp({
+				if (contentAdvs.length > 1997) return await interaction.reply({
 					content: "📂 | El contenido de las advertencias pasan de los 2000 carácteres, igualmente las puedes ver en el archivo de abajo:",
 					files: [fil]
 				})
 
-				await interaction.followUp({
+				return interaction.reply({
 					content: `:card_box: | **Advertencias de: ${member.tag || member.user.tag} (ID: ${member.id})**\n${contentAdvs}`
 				})
 
@@ -155,15 +142,14 @@ module.exports = {
 					content: ':bangbang: | ¡No tienes permiso para usar este apartado! (Administrador)',
 					ephemeral: true
 				});
-
+				
 				const advId = interaction.options.getNumber("advertencia_id");
 
 				const data = await Schema.findByIdAndDelete(advId);
 				if (!data) return interaction.reply({
 					content: ":bangbang: | La ID de la advertencia es inválida!",
-					ephemeral: true
+                    ephemeral: true
 				})
-				// await data.delete()
 
 				const member = interaction.guild.members.cache.get(data.memberId);
 				return interaction.reply({
@@ -177,24 +163,27 @@ module.exports = {
 					content: ':bangbang: | ¡No tienes permiso para usar este apartado! (Administrador)',
 					ephemeral: true
 				});
-
+				
 				const memberMention = interaction.options.getUser("miembro");
 
-				const data = await Schema.findOneAndDelete({ memberId: memberMention.id });
+				const data = await Schema.findOne({ memberId: memberMention.id });
 				if (!data) return interaction.reply({
 					content: ":bangbang: | Este usuario no tiene advertencias!",
 					ephemeral: true
 				})
-				// await data.delete()
+                else {
+				
+				await Schema.deleteMany({ memberId: memberMention.id })
 
 				const member = interaction.guild.members.cache.get(data.memberId);
 				return interaction.reply({
 					content: `:white_check_mark: | Advertencias borradas con éxito.\n👤 | Miembro: ${member.tag || member.user.tag} (ID: ${member.id})`
 				})
+			  }
 			}
 
 		} catch (e) {
-			await interaction.reply({
+			return await interaction.reply({
 				content: "🤔 | Ocurrio un error extraño, quizás estas usando los comandos muy rápido.",
 				ephemeral: true
 			})
