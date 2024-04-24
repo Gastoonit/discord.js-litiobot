@@ -2,7 +2,7 @@
 [![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/nVhAyrxy78)
 ![Nodejs](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
 ![Js](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
-## [/] ¡`Litio` source code!
+## [/] ¡`Litio` source code! [Momentáneamente OBSOLETO]
 ## JSON:
 - (+) Recuerda agregar el token, ID y tu conexión a mongoose de tu bot al archivo JSON.
 ```json
